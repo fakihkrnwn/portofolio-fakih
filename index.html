@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAKIH ANDRI | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #e5e5e5;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #ff0000, #ff4d4d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .glow {
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 30px rgba(255, 0, 0, 0.2);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #ff0000;
+            border: 3px solid #000;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: #333;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #ff4d4d);
+            border-radius: 4px;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .rotate-3d {
+            transform-style: preserve-3d;
+            animation: rotate 20s infinite linear;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #ff0000;
+            margin-top: 10px;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #ff0000;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .hexagon {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+    </style>
+</head>
+<body class="bg-black">
+    <div id="vanta-bg" class="fixed inset-0 z-0"></div>
+    
+    <!-- Floating Particles -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+        <div id="particles-js"></div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Navigation -->
+        <nav class="flex justify-between items-center py-6">
+            <div class="text-2xl font-bold gradient-text">MUHAMMAD FAKIH ANDRI KURNIAWAN</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link text-white hover:text-red-500 transition">About</a>
+                <a href="#experience" class="nav-link text-white hover:text-red-500 transition">Experience</a>
+                <a href="#skills" class="nav-link text-white hover:text-red-500 transition">Skills</a>
+                <a href="#projects" class="nav-link text-white hover:text-red-500 transition">Projects</a>
+                <a href="#education" class="nav-link text-white hover:text-red-500 transition">Education</a>
+                <a href="#contact" class="nav-link text-white hover:text-red-500 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section class="min-h-screen flex items-center pt-16 pb-32">
+            <div class="w-full">
+                <!-- Mobile Layout: Image first, then text -->
+                <div class="block md:hidden text-center">
+                    <div class="mb-8">
+                        <img 
+                            src="assets/images/profile.jpg" 
+                            alt="Profile Picture" 
+                            class="hexagon w-48 h-56 sm:w-56 sm:h-64 object-cover floating mx-auto"
+                        />
+                    </div>
+                    <div>
+                        <h1 class="text-3xl sm:text-4xl font-bold mb-4 glow">Hi, I'm Fakih Andri</h1>
+                        <h2 class="text-xl sm:text-2xl gradient-text font-bold mb-6">Junior Fullstack Developer</h2>
+                        <p class="text-base sm:text-lg mb-8 text-gray-300 max-w-lg mx-auto px-4">Double Degree Student passionate about IT with expertise in JavaScript, Python, and Kotlin. Adaptable problem-solver constantly expanding knowledge to make meaningful impact.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center px-4">
+                            <a href="#about" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 rounded-full font-medium hover:opacity-90 transition text-center">Get to Know Me ></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Layout: Text left, image right -->
+                <div class="hidden md:grid grid-cols-2 gap-12 items-center">
+                    <div class="text-left">
+                        <h1 class="text-4xl lg:text-6xl font-bold mb-4 glow">Hi, I'm Fakih Andri</h1>
+                        <h2 class="text-2xl lg:text-3xl gradient-text font-bold mb-6">Junior Fullstack Developer</h2>
+                        <p class="text-lg mb-8 text-gray-300 max-w-lg">Double Degree Student passionate about IT with expertise in JavaScript, Python, and Kotlin. Adaptable problem-solver constantly expanding knowledge to make meaningful impact.</p>
+                        <div class="flex space-x-4">
+                            <a href="#about" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 rounded-full font-medium hover:opacity-90 transition">Get to Know Me ></a>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <img 
+                            src="assets/images/profile.jpg" 
+                            alt="Profile Picture" 
+                            class="hexagon w-64 h-72 lg:w-80 lg:h-96 object-cover floating"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- About Section -->
+        <section id="about" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">About Me</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-lg mb-6 text-gray-300">I'm a Double Degree Student who took Information Technology as my major who are highly motivated and dedicated with a passionnate in IT. I have experience with the Python, Javascript, and Kotlin programming languages.</p>
+                    <p class="text-lg mb-6 text-gray-300">In addition, I actively seek oppurtunities to expand my knowledge and keep up with the latest industry trends. I'm adaptable and open to feedback, and I'm constantly striving to improve and refine my skills in IT.</p>
+                    <p class="text-lg text-gray-300">I'm excited to make a meaningful impact by contributing my knowledge and expertise.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="text-red-500 text-4xl mb-4">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Clean Code</h3>
+                        <p class="text-gray-300">Writing efficient, maintainable code with best practices</p>
+                    </div>
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="text-red-500 text-4xl mb-4">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Problem Solving</h3>
+                        <p class="text-gray-300">Analytical approach to tackle complex challenges</p>
+                    </div>
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="text-red-500 text-4xl mb-4">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Teamwork</h3>
+                        <p class="text-gray-300">Collaborating effectively with cross-functional teams</p>
+                    </div>
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="text-red-500 text-4xl mb-4">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Fast Learner</h3>
+                        <p class="text-gray-300">Quickly adapting to new technologies and frameworks</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Experience Section -->
+        <section id="experience" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">Work Experience</h2>
+            <div class="space-y-8 relative pl-8 border-l-2 border-red-500">
+                <!-- Experience 1 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold gradient-text">PT Citra Tubindo (Vallourec Group)</h3>
+                            <span class="text-red-500 font-medium">Mar 2025 – June 2025</span>
+                        </div>
+                        <h4 class="text-lg font-medium mb-4">Fullstack Developer – Internship</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Developed an AI-Powered Filter of Standard using React + Vite , leveraging AI technology to accelerate the retrieval of Standard Operating Procedures (SOPs). This feature improved search efficiency by 80% compared to manual methods.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Created a knowledge-based Chat AI to answer common user queries, designed with a Natural Language Processing (NLP) approach. The system utilized Ollama models for intent recognition and response generation, reducing repetitive support requests by 35%.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Trained and fine-tuned Ollama models in Python to support domain-specific tasks, such as semantic filtering and conversational responses, while ensuring low-latency integration with backend services.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Collaborate intensively with senior IT in the development process, including architecture design, API integration, and feature testing to match business needs.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Experience 2 -->
+                <div class="relative timeline-item pl-8">
+                    <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                            <h3 class="text-xl font-bold gradient-text">PT Charoen Pokphand Indonesia</h3>
+                            <span class="text-red-500 font-medium">July 2023 – Feb 2024</span>
+                        </div>
+                        <h4 class="text-lg font-medium mb-4">Android Developer – Internship</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Develop customized Android applications for clients with diverse needs.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Conduct thorough testing of Android apps to efficiently identify and fix bugs and deliver improved app quality and performance.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Contributed to developing the Fams FCP app that has been downloaded by more than 100 users on Google Play Store.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Collaborate with senior development team to understand complex application architecture and design.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-red-500 mr-2">•</span>
+                                <span>Write clean code using Java and Kotlin to ensure application sustainability and contuinuity while increasing efficiency by 50%.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Skills Section -->
+        <section id="skills" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">Skills</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Hard Skills -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Hard Skills</h3>
+                    <div class="grid grid-cols-3 md:grid-cols-4 gap-6">
+                        <!-- JavaScript -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-js-square text-5xl text-yellow-400 mb-2"></i>
+                        <span class="font-medium">JavaScript</span>
+                        </div>
+                        <!-- Python -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-python text-5xl text-blue-500 mb-2"></i>
+                        <span class="font-medium">Python</span>
+                        </div>
+                        <!-- Kotlin -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/kotlin.jpg" alt="Kotlin" class="w-12 h-12 mb-2">
+                        <span class="font-medium">Kotlin</span>
+                        </div>
+                        <!-- HTML -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-html5 text-5xl text-orange-500 mb-2"></i>
+                        <span class="font-medium">HTML</span>
+                        </div>
+                        <!-- CSS -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-css3-alt text-5xl text-blue-500 mb-2"></i>
+                        <span class="font-medium">CSS</span>
+                        </div>
+                        <!-- Tailwind -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/tailwind.jpg" alt="Tailwind" class="w-12 h-12 mb-2">
+                        <span class="font-medium">Tailwind</span>
+                        </div>
+                        <!-- React -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-react text-5xl text-blue-400 mb-2"></i>
+                        <span class="font-medium">React</span>
+                        </div>
+                        <!-- Node.js -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/node.jpg" alt="Node.js" class="w-12 h-12 mb-2">
+                        <span class="font-medium">Node.js</span>
+                        </div>
+                        <!-- Next.js -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/next.jpg" alt="Next.js" class="w-12 h-12 mb-2">
+                        <span class="font-medium">Next.js</span>
+                        </div>
+                        <!-- MySQL -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/mysql.jpg" alt="MySQL" class="w-12 h-12 mb-2">
+                        <span class="font-medium">MySQL</span>
+                        </div>
+                        <!-- GitHub -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-github text-5xl text-white mb-2"></i>
+                        <span class="font-medium">GitHub</span>
+                        </div>
+                        <!-- Firebase -->
+                        <div class="flex flex-col items-center">
+                        <img src="assets/images/firebase.jpg" alt="Firebase" class="w-12 h-12 mb-2">
+                        <span class="font-medium">Firebase</span>
+                        </div>
+                        <!-- Figma -->
+                        <div class="flex flex-col items-center">
+                        <i class="fab fa-figma text-5xl text-pink-500 mb-2"></i>
+                        <span class="font-medium">Figma</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Soft Skills -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Soft Skills</h3>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <span>Time Management</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-random"></i>
+                            </div>
+                            <span>Adaptability</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <span>Empathy</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <span>Problem Solving</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <span>Communication</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-gray-800 rounded-lg">
+                            <div class="text-red-500">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <span>Teamwork</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20">
+          <h2 class="text-3xl font-bold mb-12 section-title">Projects</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+              <img src="assets/images/project1.jpg" alt="AI-Powered SOP Filter" class="w-full h-40 object-cover rounded-t-xl mb-4">
+              <h3 class="text-xl font-bold gradient-text mb-4">AI-Powered Filter of Standard</h3>
+              <p class="text-gray-300 mb-4">React (Vite) based application that leverages AI to streamline SOP searches, improving information retrieval efficiency by 80%.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">React</span>
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">Vite</span>
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">NLP</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://github.com/fakihkrnwn/chat-ai" target="_blank" class="text-red-500 hover:text-red-300 transition flex items-center">
+                    <i class="fab fa-github mr-2"></i> GitHub
+                </a>
+              </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover">
+              <img src="assets/images/project2.jpg" alt="Fams FCP Android App" class="w-full h-40 object-cover rounded-t-xl mb-4">
+              <h3 class="text-xl font-bold gradient-text mb-4">Fams FCP Android App</h3>
+              <p class="text-gray-300 mb-4">Custom Android application developed for PT Bisi International Tbk, downloaded by over 100 users on Google Play Store.</p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">Kotlin</span>
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">Android</span>
+                <span class="text-xs px-2 py-1 bg-red-900 text-red-200 rounded">Java</span>
+              </div>
+              <div class="flex space-x-4">
+                <a href="https://github.com/fakihkrnwn/Bisi-Fams-App.git" target="_blank" class="text-red-500 hover:text-red-300 transition flex items-center">
+                    <i class="fab fa-github mr-2"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Education 1 -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">University of Indonesia – CCIT Engineering Faculty</h3>
+                    <p class="text-gray-300 mb-4">Depok, Indonesia</p>
+                    <h4 class="text-lg font-medium mb-2">Bachelor of Information Communication Technology</h4>
+                    <p class="text-red-500 mb-4">Aug 2021 – Aug 2023</p>
+                    <p class="text-gray-300">GPA: 3.36</p>
+                </div>
+                
+                <!-- Education 2 -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <h3 class="text-2xl font-bold gradient-text mb-2">Asia e University</h3>
+                    <p class="text-gray-300 mb-4">Selangor, Malaysia</p>
+                    <h4 class="text-lg font-medium mb-2">Bachelor of Information Communication Technology</h4>
+                    <p class="text-red-500 mb-4">Aug 2021 – Aug 2025</p>
+                    <p class="text-gray-300">Double Degree Program</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Certifications Section -->
+        <section class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Certification 1 -->
+                <a href="https://drive.google.com/file/d/1pUaQHSSisgKtyK629MTf3bS1RzkAL_Sm/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">FrontEnd - JavaScript</h3>
+                <p class="text-gray-300 mb-2">Certified by MySkill</p>
+                <p class="text-red-500">Oct 2024</p>
+                </a>
+                <!-- Certification 2 -->
+                <a href="https://drive.google.com/file/d/1DyMATx-wyRyxuqgVFcAr-swmshOJiuC6/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">FrontEnd - HTML</h3>
+                <p class="text-gray-300 mb-2">Certified by MySkill</p>
+                <p class="text-red-500">Aug 2024</p>
+                </a>
+                <!-- Certification 3 -->
+                <a href="https://drive.google.com/file/d/1peDGaI6SzjTYaoVBaRF6FThhIoXeXX5k/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">Professional Certificate</h3>
+                <p class="text-gray-300 mb-2">CEP – CCIT Faculty of Engineering, University of Indonesia</p>
+                <p class="text-red-500">Nov 2023</p>
+                </a>
+                <!-- Certification 4 -->
+                <a href="https://drive.google.com/file/d/15OvVSd4M21wuq7zy-W7egng62nxGq6re/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">Introduction to Front End</h3>
+                <p class="text-gray-300 mb-2">Certified by MySkill</p>
+                <p class="text-red-500">Sep 2023</p>
+                </a>
+                <!-- Certification 5 -->
+                <a href="https://drive.google.com/file/d/1i9dBt_rkPQsTodhwk-wRIufvM90XpfSD/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">IoT Fundamentals: Big data & Analytics</h3>
+                <p class="text-gray-300 mb-2">Certified by Cisco</p>
+                <p class="text-red-500">Jan 2023</p>
+                </a>
+                <!-- Certification 6 -->
+                <a href="https://drive.google.com/file/d/192KK_ut52L3g_p6tINkGpfRmTl5iWc9p/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">IoT Fundamentals: Connecting Things</h3>
+                <p class="text-gray-300 mb-2">Certified by Cisco</p>
+                <p class="text-red-500">Jan 2023</p>
+                </a>
+                <!-- Certification 7 -->
+                <a href="https://drive.google.com/file/d/1MxbEV03JKfeFnuIX1pGnHgnNLURcR857/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">IoT Fundamentals: IoT Security</h3>
+                <p class="text-gray-300 mb-2">Certified by Cisco</p>
+                <p class="text-red-500">Jan 2023</p>
+                </a>
+                <!-- Certification 8 -->
+                <a href="https://drive.google.com/file/d/1Up2geFP6RlQWFncy69CUdTUeaiNDNVyI/view?usp=share_link" target="_blank" class="bg-gray-900 bg-opacity-70 p-6 rounded-xl card-hover block">
+                <h3 class="text-xl font-bold gradient-text mb-2">Cisco Networking Academy</h3>
+                <p class="text-gray-300 mb-2">Electrical Engineering Department University of Indonesia</p>
+                <p class="text-red-500">Dec 2022</p>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Organization Section -->
+        <section class="py-20">
+            <h2 class="text-3xl font-bold mb-12 section-title">Organization</h2>
+            <div class="space-y-8">
+                <!-- Org 1 -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-xl font-bold gradient-text">"Seemore Event Organizer" by Arsana Wedding</h3>
+                        <span class="text-red-500 font-medium">Nov 2024 – Feb 2025</span>
+                    </div>
+                    <h4 class="text-lg font-medium mb-4">Stage Manager</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Work closely with technical crew to ensure synchronization of lighting, sound, and props are ready.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Organize the movement of all parties who will go on stage (performers, speakers, MC, etc.) according to the order in the rundown.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Resolve technical issues in the field quickly and effectively to maintain show quality.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Org 2 -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-xl font-bold gradient-text">"UI Film Festival" by University of Indonesia</h3>
+                        <span class="text-red-500 font-medium">Apr 2022 - Sep 2022</span>
+                    </div>
+                    <h4 class="text-lg font-medium mb-4">Funding Staff</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Seeking Sponsorship for the success of UI Film Festival.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Assist in promoting UI Film Festival merchandise to the public.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Participate in assisting in the implementation of the UI Film Festival by marketing tickets and outreach in supervising UI Film Festival activities.</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Org 3 -->
+                <div class="bg-gray-900 bg-opacity-70 p-8 rounded-xl card-hover">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-4">
+                        <h3 class="text-xl font-bold gradient-text">"CCIT Squad" by CCIT Engineering Faculty – University of Indonesia</h3>
+                        <span class="text-red-500 font-medium">Sep 2021 – June 2023</span>
+                    </div>
+                    <h4 class="text-lg font-medium mb-4">Marketing Staff</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Assisted the marketing team in providing information about the advantages and explaining the job prospects of majoring in Information Technology at the University of Indonesia to final year high school students.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Assisted in CCIT FT UI Open House activities organized for high school students aimed at introducing the CCIT UI campus more clearly and directly.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-red-500 mr-2">•</span>
+                            <span>Participated in preparing equipment to support CCIT Squad events in coordination with other divisions.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold gradient-text mb-6">Contact Information</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4">
+                        <div class="text-red-500 text-xl mt-1">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Location</h4>
+                            <p class="text-gray-300">Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-red-500 text-xl mt-1">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Email</h4>
+                            <p class="text-gray-300">contact.fakih@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-red-500 text-xl mt-1">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Phone</h4>
+                            <p class="text-gray-300">(+62) 858-1456-7517</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="text-red-500 text-xl mt-1">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Links</h4>
+                            <div class="flex space-x-4 mt-2">
+                                <a href="https://linkedin.com/in/fakih-andri" target="_blank" class="text-gray-300 hover:text-red-500 transition">
+                                    <i class="fab fa-linkedin-in text-2xl"></i>
+                                </a>
+                                <a href="https://linktr.ee/portofolio.fakih" target="_blank" class="text-gray-300 hover:text-red-500 transition">
+                                    <i class="fas fa-link text-2xl"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-2xl font-bold gradient-text mb-6">Send Me a Message</h3>
+
+                <form id="contactForm" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="name" class="block mb-1">Name</label>
+                            <input type="text" id="name" name="from_name" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-1">Email</label>
+                            <input type="email" id="email" name="reply_to" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="subject" class="block mb-1">Subject</label>
+                        <input type="text" id="subject" name="subject" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    </div>
+                    <div>
+                        <label for="message" class="block mb-1">Message</label>
+                        <textarea id="message" name="message" rows="4" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                    </div>
+                    <button type="submit" id="submitBtn" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 rounded-full font-medium hover:opacity-90 transition flex items-center">
+                        <span id="btnText">Send Message</span>
+                        <div id="spinner" class="ml-2 hidden">
+                            <i class="fas fa-spinner fa-spin"></i>
+                        </div>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Initialize EmailJS
+        emailjs.init("RBG26TdEere-c3PIA"); // Ganti dengan Public Key Anda
+        
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const spinner = document.getElementById('spinner');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Function to show message
+        function showMessage(element, duration = 5000) {
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, duration);
+        }
+
+        // Function to set loading state
+        function setLoading(isLoading) {
+            if (isLoading) {
+                contactForm.classList.add('loading');
+                btnText.textContent = 'Sending...';
+                spinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+            } else {
+                contactForm.classList.remove('loading');
+                btnText.textContent = 'Send Message';
+                spinner.classList.add('hidden');
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Handle form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Set loading state
+            setLoading(true);
+
+            // Send email using EmailJS
+            emailjs.sendForm(
+                'service_fakih',
+                'template_fakih',
+                this
+            ).then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                setLoading(false);
+                showMessage(successMessage);
+                contactForm.reset();
+            }, function(error) {
+                console.log('FAILED...', error);
+                setLoading(false);
+                showMessage(errorMessage);
+            });
+        });
+
+        // Add input validation
+        const inputs = document.querySelectorAll('input[required], textarea[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#374151';
+                }
+            });
+        });
+    </script>
+        
+        <!-- Footer -->
+        <footer class="py-10 border-t border-gray-800">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-xl font-bold gradient-text mb-4 md:mb-0">MUHAMMAD FAKIH ANDRI KURNIAWAN</div>
+                <div class="text-gray-400 text-sm">
+                    © 2023 Muhammad Fakih Andri Kurniawan. All rights reserved.
+                </div>
+                <div class="flex space-x-4 mt-4 md:mt-0">
+                    <a href="https://linkedin.com/in/fakih-andri" target="_blank" class="text-gray-400 hover:text-red-500 transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://linktr.ee/portofolio.fakih" target="_blank" class="text-gray-400 hover:text-red-500 transition">
+                        <i class="fas fa-link"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 3D Floating Cube -->
+    <div class="fixed bottom-8 right-8 z-20 hidden lg:block">
+        <div class="w-24 h-24 rotate-3d">
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateY(0deg) translateZ(12px);"></div>
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateY(90deg) translateZ(12px);"></div>
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateY(180deg) translateZ(12px);"></div>
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateY(270deg) translateZ(12px);"></div>
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateX(90deg) translateZ(12px);"></div>
+            <div class="absolute w-full h-full bg-red-900 opacity-20" style="transform: rotateX(270deg) translateZ(12px);"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize Vanta.js background
+        VANTA.NET({
+            el: "#vanta-bg",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0xff0000,
+            backgroundColor: 0x0,
+            points: 10.00,
+            maxDistance: 20.00,
+            spacing: 15.00
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('.md\\:hidden');
+        const mobileMenu = document.querySelector('.hidden.md\\:flex');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            mobileMenu.classList.toggle('flex-col');
+            mobileMenu.classList.toggle('absolute');
+            mobileMenu.classList.toggle('top-16');
+            mobileMenu.classList.toggle('right-4');
+            mobileMenu.classList.toggle('bg-gray-900');
+            mobileMenu.classList.toggle('p-4');
+            mobileMenu.classList.toggle('rounded-lg');
+            mobileMenu.classList.toggle('shadow-lg');
+        });
+    </script>
+</body>
+</html>
