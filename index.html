@@ -120,6 +120,43 @@
         .hexagon {
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
         }
+
+        /* Alert styles */
+        .alert {
+            display: none;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        .alert-success {
+            background-color: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            color: #22c55e;
+        }
+
+        .alert-error {
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-loading {
+            opacity: 0.7;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body class="bg-black">
@@ -618,170 +655,119 @@
         
         <!-- Contact Section -->
         <section id="contact" class="py-20 px-4 max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
-                <h3 class="text-2xl font-bold gradient-text mb-6">Contact Information</h3>
-                <div class="space-y-6">
-                    <div class="flex items-start space-x-4">
-                        <div class="text-red-500 text-xl mt-1">
-                            <i class="fas fa-map-marker-alt"></i>
+            <h2 class="text-3xl font-bold mb-12 section-title">Get In Touch</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Contact Information</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Location</h4>
+                                <p class="text-gray-300">Jakarta, Indonesia</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold">Location</h4>
-                            <p class="text-gray-300">Jakarta, Indonesia</p>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Email</h4>
+                                <p class="text-gray-300">contact.fakih@gmail.com</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="text-red-500 text-xl mt-1">
-                            <i class="fas fa-envelope"></i>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Phone</h4>
+                                <p class="text-gray-300">(+62) 858-1456-7517</p>
+                            </div>
                         </div>
-                        <div>
-                            <h4 class="font-bold">Email</h4>
-                            <p class="text-gray-300">contact.fakih@gmail.com</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="text-red-500 text-xl mt-1">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Phone</h4>
-                            <p class="text-gray-300">(+62) 858-1456-7517</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start space-x-4">
-                        <div class="text-red-500 text-xl mt-1">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Links</h4>
-                            <div class="flex space-x-4 mt-2">
-                                <a href="https://linkedin.com/in/fakih-andri" target="_blank" class="text-gray-300 hover:text-red-500 transition">
-                                    <i class="fab fa-linkedin-in text-2xl"></i>
-                                </a>
-                                <a href="https://linktr.ee/portofolio.fakih" target="_blank" class="text-gray-300 hover:text-red-500 transition">
-                                    <i class="fas fa-link text-2xl"></i>
-                                </a>
+                        <div class="flex items-start space-x-4">
+                            <div class="text-red-500 text-xl mt-1">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Links</h4>
+                                <div class="flex space-x-4 mt-2">
+                                    <a href="https://linkedin.com/in/fakih-andri" target="_blank" class="text-gray-300 hover:text-red-500 transition">
+                                        <i class="fab fa-linkedin-in text-2xl"></i>
+                                    </a>
+                                    <a href="https://linktr.ee/portofolio.fakih" target="_blank" class="text-gray-300 hover:text-red-500 transition">
+                                        <i class="fas fa-link text-2xl"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <h3 class="text-2xl font-bold gradient-text mb-6">Send Me a Message</h3>
+                <div>
+                    <h3 class="text-2xl font-bold gradient-text mb-6">Send Me a Message</h3>
 
-                <form id="contactForm" class="space-y-4">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label for="name" class="block mb-1">Name</label>
-                            <input type="text" id="name" name="from_name" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                    <!-- Alert Messages -->
+                    <div id="successMessage" class="alert alert-success">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle mr-3"></i>
+                            <span>Message sent successfully! I'll get back to you soon.</span>
+                        </div>
+                    </div>
+                    
+                    <div id="errorMessage" class="alert alert-error">
+                        <div class="flex items-center">
+                            <i class="fas fa-exclamation-circle mr-3"></i>
+                            <span>Failed to send message. Please try again or contact me directly via email.</span>
+                        </div>
+                    </div>
+
+                    <form id="contactForm" class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="block mb-1 font-medium">Name</label>
+                                <input type="text" id="name" name="from_name" required 
+                                       class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                                       placeholder="Your full name">
+                            </div>
+                            <div>
+                                <label for="email" class="block mb-1 font-medium">Email</label>
+                                <input type="email" id="email" name="reply_to" required 
+                                       class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                                       placeholder="your.email@example.com">
+                            </div>
                         </div>
                         <div>
-                            <label for="email" class="block mb-1">Email</label>
-                            <input type="email" id="email" name="reply_to" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <label for="subject" class="block mb-1 font-medium">Subject</label>
+                            <input type="text" id="subject" name="subject" required 
+                                   class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all"
+                                   placeholder="What's this about?">
                         </div>
-                    </div>
-                    <div>
-                        <label for="subject" class="block mb-1">Subject</label>
-                        <input type="text" id="subject" name="subject" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500">
-                    </div>
-                    <div>
-                        <label for="message" class="block mb-1">Message</label>
-                        <textarea id="message" name="message" rows="4" required class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
-                    </div>
-                    <button type="submit" id="submitBtn" class="px-6 py-3 bg-gradient-to-r from-red-600 to-red-800 rounded-full font-medium hover:opacity-90 transition flex items-center">
-                        <span id="btnText">Send Message</span>
-                        <div id="spinner" class="ml-2 hidden">
-                            <i class="fas fa-spinner fa-spin"></i>
+                        <div>
+                            <label for="message" class="block mb-1 font-medium">Message</label>
+                            <textarea id="message" name="message" rows="5" required 
+                                      class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all resize-vertical"
+                                      placeholder="Tell me about your project or how I can help you..."></textarea>
                         </div>
-                    </button>
-                </form>
+                        <button type="submit" id="submitBtn" 
+                                class="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-red-600 to-red-800 rounded-lg font-medium hover:opacity-90 transition-all duration-300 flex items-center justify-center">
+                            <span id="btnText">Send Message</span>
+                            <div id="spinner" class="ml-2 hidden">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <script>
-        // Initialize EmailJS
-        emailjs.init("RBG26TdEere-c3PIA"); // Ganti dengan Public Key Anda
-        
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const btnText = document.getElementById('btnText');
-        const spinner = document.getElementById('spinner');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-
-        // Function to show message
-        function showMessage(element, duration = 5000) {
-            element.style.display = 'block';
-            setTimeout(() => {
-                element.style.display = 'none';
-            }, duration);
-        }
-
-        // Function to set loading state
-        function setLoading(isLoading) {
-            if (isLoading) {
-                contactForm.classList.add('loading');
-                btnText.textContent = 'Sending...';
-                spinner.classList.remove('hidden');
-                submitBtn.disabled = true;
-            } else {
-                contactForm.classList.remove('loading');
-                btnText.textContent = 'Send Message';
-                spinner.classList.add('hidden');
-                submitBtn.disabled = false;
-            }
-        }
-
-        // Handle form submission
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Hide previous messages
-            successMessage.style.display = 'none';
-            errorMessage.style.display = 'none';
-            
-            // Set loading state
-            setLoading(true);
-
-            // Send email using EmailJS
-            emailjs.sendForm(
-                'service_fakih',
-                'template_fakih',
-                this
-            ).then(function(response) {
-                console.log('SUCCESS!', response.status, response.text);
-                setLoading(false);
-                showMessage(successMessage);
-                contactForm.reset();
-            }, function(error) {
-                console.log('FAILED...', error);
-                setLoading(false);
-                showMessage(errorMessage);
-            });
-        });
-
-        // Add input validation
-        const inputs = document.querySelectorAll('input[required], textarea[required]');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                if (!this.value.trim()) {
-                    this.style.borderColor = '#ef4444';
-                } else {
-                    this.style.borderColor = '#374151';
-                }
-            });
-        });
-    </script>
+        </section>
         
         <!-- Footer -->
         <footer class="py-10 border-t border-gray-800">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="text-xl font-bold gradient-text mb-4 md:mb-0">MUHAMMAD FAKIH ANDRI KURNIAWAN</div>
                 <div class="text-gray-400 text-sm">
-                    © 2023 Muhammad Fakih Andri Kurniawan. All rights reserved.
+                    © 2025 Muhammad Fakih Andri Kurniawan. All rights reserved.
                 </div>
                 <div class="flex space-x-4 mt-4 md:mt-0">
                     <a href="https://linkedin.com/in/fakih-andri" target="_blank" class="text-gray-400 hover:text-red-500 transition">
@@ -825,33 +811,191 @@
             spacing: 15.00
         });
         
+        // Initialize EmailJS with your actual public key
+        emailjs.init("RBG26TdEere-c3PIA"); // Replace with your actual public key
+        
+        // Get form elements
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const spinner = document.getElementById('spinner');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Function to show/hide messages
+        function showMessage(element, duration = 5000) {
+            element.style.display = 'block';
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, duration);
+        }
+
+        // Function to hide all messages
+        function hideMessages() {
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+        }
+
+        // Function to set loading state
+        function setLoadingState(isLoading) {
+            if (isLoading) {
+                contactForm.classList.add('form-loading');
+                btnText.textContent = 'Sending...';
+                spinner.classList.remove('hidden');
+                submitBtn.disabled = true;
+            } else {
+                contactForm.classList.remove('form-loading');
+                btnText.textContent = 'Send Message';
+                spinner.classList.add('hidden');
+                submitBtn.disabled = false;
+            }
+        }
+
+        // Validate email format
+        function validateEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Validate form inputs
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !subject || !message) {
+                return { isValid: false, message: 'Please fill in all required fields.' };
+            }
+
+            if (!validateEmail(email)) {
+                return { isValid: false, message: 'Please enter a valid email address.' };
+            }
+
+            if (message.length < 10) {
+                return { isValid: false, message: 'Message must be at least 10 characters long.' };
+            }
+
+            return { isValid: true };
+        }
+
+        // Handle form submission
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide previous messages
+            hideMessages();
+            
+            // Validate form
+            const validation = validateForm();
+            if (!validation.isValid) {
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.querySelector('span').textContent = validation.message;
+                showMessage(errorDiv);
+                return;
+            }
+            
+            // Set loading state
+            setLoadingState(true);
+
+            // Prepare template parameters
+            const templateParams = {
+                from_name: document.getElementById('name').value.trim(),
+                reply_to: document.getElementById('email').value.trim(),
+                subject: document.getElementById('subject').value.trim(),
+                message: document.getElementById('message').value.trim(),
+                to_name: 'Fakih Andri'
+            };
+
+            // Send email using EmailJS
+            emailjs.send(
+                'service_fakih', // Replace with your EmailJS service ID
+                'template_fakih', // Replace with your EmailJS template ID
+                templateParams
+            ).then(function(response) {
+                console.log('SUCCESS!', response.status, response.text);
+                setLoadingState(false);
+                showMessage(successMessage);
+                contactForm.reset();
+                
+                // Remove any error styling
+                const inputs = contactForm.querySelectorAll('input, textarea');
+                inputs.forEach(input => {
+                    input.style.borderColor = '#374151';
+                });
+                
+            }).catch(function(error) {
+                console.log('FAILED...', error);
+                setLoadingState(false);
+                
+                // Show specific error message if available
+                let errorText = 'Failed to send message. Please try again or contact me directly via email.';
+                if (error && error.text) {
+                    errorText = `Error: ${error.text}`;
+                }
+                
+                const errorDiv = document.getElementById('errorMessage');
+                errorDiv.querySelector('span').textContent = errorText;
+                showMessage(errorDiv);
+            });
+        });
+
+        // Add real-time validation
+        const inputs = document.querySelectorAll('#contactForm input, #contactForm textarea');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.hasAttribute('required') && !this.value.trim()) {
+                    this.style.borderColor = '#ef4444';
+                    this.style.boxShadow = '0 0 0 1px #ef4444';
+                } else if (this.type === 'email' && this.value && !validateEmail(this.value)) {
+                    this.style.borderColor = '#ef4444';
+                    this.style.boxShadow = '0 0 0 1px #ef4444';
+                } else {
+                    this.style.borderColor = '#374151';
+                    this.style.boxShadow = 'none';
+                }
+            });
+
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#ef4444';
+                this.style.boxShadow = '0 0 0 2px rgba(239, 68, 68, 0.2)';
+            });
+        });
+        
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
             });
         });
         
         // Mobile menu toggle
         const mobileMenuButton = document.querySelector('.md\\:hidden');
-        const mobileMenu = document.querySelector('.hidden.md\\:flex');
+        const navLinks = document.querySelector('.hidden.md\\:flex');
         
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-            mobileMenu.classList.toggle('flex');
-            mobileMenu.classList.toggle('flex-col');
-            mobileMenu.classList.toggle('absolute');
-            mobileMenu.classList.toggle('top-16');
-            mobileMenu.classList.toggle('right-4');
-            mobileMenu.classList.toggle('bg-gray-900');
-            mobileMenu.classList.toggle('p-4');
-            mobileMenu.classList.toggle('rounded-lg');
-            mobileMenu.classList.toggle('shadow-lg');
-        });
+        if (mobileMenuButton && navLinks) {
+            mobileMenuButton.addEventListener('click', () => {
+                navLinks.classList.toggle('hidden');
+                navLinks.classList.toggle('flex');
+                navLinks.classList.toggle('flex-col');
+                navLinks.classList.toggle('absolute');
+                navLinks.classList.toggle('top-16');
+                navLinks.classList.toggle('right-4');
+                navLinks.classList.toggle('bg-gray-900');
+                navLinks.classList.toggle('p-4');
+                navLinks.classList.toggle('rounded-lg');
+                navLinks.classList.toggle('shadow-lg');
+                navLinks.classList.toggle('z-50');
+            });
+        }
     </script>
 </body>
 </html>
